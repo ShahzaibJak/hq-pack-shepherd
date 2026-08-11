@@ -6,6 +6,8 @@ The pack is source-agnostic. A setup walkthrough helps the operator select the c
 
 ## Install
 
+After the marketplace listing is approved:
+
 ```bash
 hq install marketplace:issue-orchestrator
 ```
