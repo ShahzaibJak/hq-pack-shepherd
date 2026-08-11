@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate an HQ issue-orchestrator configuration without external packages."""
+"""Validate an HQ shepherd configuration without external packages."""
 
 from __future__ import annotations
 

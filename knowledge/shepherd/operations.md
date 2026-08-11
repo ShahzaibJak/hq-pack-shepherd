@@ -1,4 +1,4 @@
-# Issue orchestrator operations
+# Shepherd operations
 
 Start in pilot mode with a sample of five or fewer items and one concurrent work slot. Review inclusions, exclusions, dedupe, routing, ownership, proposed actions, and handoff quality before activation.
 

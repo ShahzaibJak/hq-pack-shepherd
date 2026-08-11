@@ -1,4 +1,4 @@
-# Issue orchestrator architecture
+# Shepherd architecture
 
 The pack separates policy from adapters. One tenant-scoped configuration defines the agent, goals, source contracts, lifecycle, scope, permissions, handoff, schedule, and pilot state. Source-specific tools only collect and optionally apply an explicitly permitted action.
 

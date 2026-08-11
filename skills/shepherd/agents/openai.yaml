@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shepherd"
+  short_description: "Triage configured issue queues safely"
+  default_prompt: "Use $shepherd to run the configured issue workflow or a read-only pilot."

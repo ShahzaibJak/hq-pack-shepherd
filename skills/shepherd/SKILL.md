@@ -1,16 +1,16 @@
 ---
-name: issue-orchestrator
-description: Run a configured HQ issue or ticket orchestration loop across development, customer-support, feedback, or operational sources. Use when the user asks to triage a configured queue, run the issue manager, inspect its status, execute a read-only pilot, prepare handoffs, or advance eligible items under the permissions created by issue-orchestrator-setup.
+name: shepherd
+description: Run Shepherd across configured development, customer-support, feedback, or operational sources. Use when the user asks Shepherd to triage a queue, inspect status, execute a read-only pilot, prepare handoffs, or advance eligible items under the permissions created by shepherd-setup.
 ---
 
-# Issue orchestrator
+# Shepherd
 
-Require an absolute config path or resolve the active company's `companies/{company}/settings/issue-orchestrator.json`, falling back to `personal/settings/issue-orchestrator.json` only for personal scope. Validate it with the setup skill's `scripts/validate_config.py` before reading any source.
+Require an absolute config path or resolve the active company's `companies/{company}/settings/shepherd.json`, falling back to `personal/settings/shepherd.json` only for personal scope. Validate it with the setup skill's `scripts/validate_config.py` before reading any source.
 
 ## Modes
 
 - `status`: report configured agent, sources, mode, scope caps, permissions, last run, and blockers without source writes.
-- `pilot`: follow the setup skill's pilot contract and write a report under `workspace/reports/issue-orchestrator/`. Never write to a source.
+- `pilot`: follow the setup skill's pilot contract and write a report under `workspace/reports/shepherd/`. Never write to a source.
 - `run`: require `mode=active`; process no more than `scope.maxItemsPerRun` with no more than `scope.maxConcurrentWork` active items.
 
 ## Operating loop

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shepherd Setup"
+  short_description: "Configure and pilot a guarded issue agent"
+  default_prompt: "Use $shepherd-setup to configure an agent, issue sources, permissions, handoffs, and a safe pilot."
