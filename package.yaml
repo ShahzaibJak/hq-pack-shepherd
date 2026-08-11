@@ -1,27 +1,27 @@
-source: "github:ShahzaibJak/hq-pack-issue-orchestrator"
-name: hq-pack-issue-orchestrator
+source: "github:ShahzaibJak/hq-pack-shepherd"
+name: hq-pack-shepherd
 version: 0.1.0
 publisher: '@shahzaibjak'
 access: public
 type: skill
-description: 'Configure an existing HQ agent to manage issues from one or more sources through a guarded lifecycle. Includes a step-by-step setup interview, least-privilege permission model, durable handoff contract, health checks, and a read-only pilot before activation.'
+description: 'Shepherd turns any HQ agent into a guarded manager for issues, tickets, feedback, and operational queues. Guided setup connects sources, defines goals, scope, handoffs, lifecycle, and least-privilege permissions, then proves the workflow with a read-only pilot before activation.'
 requires:
   hqCore: '>=12.0.0'
 capabilities:
   - fs
 contributes:
   skills:
-    - issue-orchestrator-setup
-    - issue-orchestrator
+    - shepherd-setup
+    - shepherd
   workers: []
   knowledge:
-    - issue-orchestrator
+    - shepherd
   hooks: []
   policies: []
   commands: []
 initialization:
-  entrypoint: issue-orchestrator-setup
-  prompt: "Run /issue-orchestrator-setup to select a company, an existing agent, issue sources, goals, lifecycle, handoff, scope, permissions, and a safe pilot."
+  entrypoint: shepherd-setup
+  prompt: "Run /shepherd-setup to give an existing HQ agent a guarded issue workflow, from source selection and permissions through a safe pilot."
 keywords:
   - hq
   - hq-pack
@@ -31,4 +31,4 @@ keywords:
   - support
   - triage
 license: MIT
-repository: 'https://github.com/ShahzaibJak/hq-pack-issue-orchestrator'
+repository: 'https://github.com/ShahzaibJak/hq-pack-shepherd'

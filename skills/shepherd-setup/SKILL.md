@@ -1,9 +1,9 @@
 ---
-name: issue-orchestrator-setup
-description: Configure and pilot an existing HQ agent as a guarded issue or ticket orchestrator. Use when the user wants to manage development issues, customer-support tickets, operational queues, feedback, or mixed issue sources through HQ; asks to select an agent, company, sources, goals, handoff, scope, permissions, lifecycle, or schedule; or wants a safe first pilot before enabling automation.
+name: shepherd-setup
+description: Set up and pilot Shepherd, turning an existing HQ agent into a guarded manager for issues, tickets, feedback, and operational queues. Use when the user wants to configure Shepherd; select an agent, company, sources, goals, handoff, scope, permissions, lifecycle, or schedule; or prove a safe pilot before enabling automation.
 ---
 
-# Issue orchestrator setup
+# Shepherd setup
 
 Create one tenant-scoped configuration and prove it with a read-only pilot. Ask one decision at a time with a structured picker when available. Persist completed answers after each phase so setup can resume.
 
@@ -14,7 +14,7 @@ Create one tenant-scoped configuration and prove it with a read-only pilot. Ask 
 3. Ask the operator to select one existing agent. Do not provision a new identity from this skill; route that need to `/new-agent`.
 4. Record the agent's stable ID and display name.
 
-Write company configuration to `companies/{company}/settings/issue-orchestrator.json`; write personal configuration to `personal/settings/issue-orchestrator.json`.
+Write company configuration to `companies/{company}/settings/shepherd.json`; write personal configuration to `personal/settings/shepherd.json`.
 
 ## 2. Define the outcome
 
@@ -55,14 +55,14 @@ The pilot requires every write permission false. Store credentials through `/hq-
 Use `assets/config-template.json` as the shape and fill every placeholder. Read `references/config-contract.md` before writing. Then run:
 
 ```bash
-python3 .claude/skills/issue-orchestrator-setup/scripts/validate_config.py <absolute-config-path>
+python3 .claude/skills/shepherd-setup/scripts/validate_config.py <absolute-config-path>
 ```
 
 Resolve every validation error before continuing. Never loosen the validator to accommodate an unsafe configuration.
 
 ## 8. Run the pilot
 
-Read `references/pilot-contract.md`, then invoke `/issue-orchestrator pilot` with the config path. The pilot reads a bounded sample and writes a local report under `workspace/reports/issue-orchestrator/`; it performs no source, repository, messaging, ticket, or lifecycle writes.
+Read `references/pilot-contract.md`, then invoke `/shepherd pilot` with the config path. The pilot reads a bounded sample and writes a local report under `workspace/reports/shepherd/`; it performs no source, repository, messaging, ticket, or lifecycle writes.
 
 Review the report with the operator. Check false inclusions and exclusions, dedupe evidence, proposed owners and actions, handoff completeness, and requested permissions. Record the activation decision and any config changes.
 

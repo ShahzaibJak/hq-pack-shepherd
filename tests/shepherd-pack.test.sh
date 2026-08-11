@@ -2,7 +2,7 @@
 set -euo pipefail
 
 PACK="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-VALIDATOR="$PACK/skills/issue-orchestrator-setup/scripts/validate_config.py"
+VALIDATOR="$PACK/skills/shepherd-setup/scripts/validate_config.py"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 
@@ -11,9 +11,9 @@ fail() {
   exit 1
 }
 
-grep -q '^  entrypoint: issue-orchestrator-setup$' "$PACK/package.yaml" || fail "missing setup initialization"
-grep -q '^    - issue-orchestrator$' "$PACK/package.yaml" || fail "missing run skill contribution"
-grep -q '^    - issue-orchestrator-setup$' "$PACK/package.yaml" || fail "missing setup skill contribution"
+grep -q '^  entrypoint: shepherd-setup$' "$PACK/package.yaml" || fail "missing setup initialization"
+grep -q '^    - shepherd$' "$PACK/package.yaml" || fail "missing run skill contribution"
+grep -q '^    - shepherd-setup$' "$PACK/package.yaml" || fail "missing setup skill contribution"
 
 python3 - "$PACK/package.yaml" <<'PY'
 import pathlib
@@ -26,11 +26,11 @@ if not match:
     raise SystemExit("package version is missing")
 if "publisher: '@shahzaibjak'" not in manifest:
     raise SystemExit("creator publisher is missing")
-if "github:ShahzaibJak/hq-pack-issue-orchestrator" not in manifest:
+if "github:ShahzaibJak/hq-pack-shepherd" not in manifest:
     raise SystemExit("standalone source is missing")
 PY
 
-python3 - "$PACK/skills/issue-orchestrator-setup/assets/config-template.json" "$TMP/valid.json" <<'PY'
+python3 - "$PACK/skills/shepherd-setup/assets/config-template.json" "$TMP/valid.json" <<'PY'
 import json
 import pathlib
 import sys
@@ -83,4 +83,4 @@ if python3 "$VALIDATOR" "$TMP/secret.json" >/dev/null 2>&1; then
   fail "configuration accepted a credential-looking secret value"
 fi
 
-echo "issue-orchestrator pack tests passed"
+echo "shepherd pack tests passed"
